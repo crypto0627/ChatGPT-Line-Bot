@@ -69,5 +69,6 @@ def home():
 
 
 if __name__ == "__main__":
-    from waitress import serve
-    app.run(host='0.0.0.0', port=5050)
+    from gevent import pywsgi
+    server=pywsgi.WSGIServer(('0.0.0.0',5050),app)
+    server.serve_forever()
